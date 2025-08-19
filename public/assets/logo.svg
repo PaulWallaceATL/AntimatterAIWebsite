@@ -1,0 +1,22 @@
+<svg width="200" height="48" viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Antimatter logo icon -->
+  <g clip-path="url(#clip0)">
+    <path d="M8 0H40C44.4183 0 48 3.58172 48 8V40C48 44.4183 44.4183 48 40 48H8C3.58172 48 0 44.4183 0 40V8C0 3.58172 3.58172 0 8 0Z" fill="url(#gradient)"/>
+    <path d="M24 8L32 32H28L26.5 28H21.5L20 32H16L24 8ZM24 16L22.25 22H25.75L24 16Z" fill="white"/>
+  </g>
+  
+  <!-- Antimatter text -->
+  <text x="60" y="19" fill="#ffffff" font-family="Inter, sans-serif" font-size="16" font-weight="600">Antimatter</text>
+  <text x="60" y="35" fill="#a2a3e9" font-family="Inter, sans-serif" font-size="12" font-weight="400">AI</text>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#696aac"/>
+      <stop offset="50%" style="stop-color:#a2a3e9"/>
+      <stop offset="100%" style="stop-color:#c7c8f2"/>
+    </linearGradient>
+    <clipPath id="clip0">
+      <rect width="48" height="48" rx="8" fill="white"/>
+    </clipPath>
+  </defs>
+</svg> 

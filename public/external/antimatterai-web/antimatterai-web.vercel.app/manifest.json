@@ -1,0 +1,27 @@
+{
+  "name": "Antimatter AI - Software Development & Digital Marketing",
+  "short_name": "Antimatter AI",
+  "description": "Atlanta-based software development and digital marketing agency specializing in AI, Web3, and cybersecurity solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#4c4fce",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+} 
