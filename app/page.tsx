@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button'
 import { ParticlesBackground } from '@/components/ui/ParticlesBackground'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Reveal } from '@/components/ui/Reveal'
 
 export default function HomePage() {
   return (
@@ -101,40 +102,52 @@ export default function HomePage() {
       </section>
 
       {/* Trusted by Industry Leaders Section */}
-      <TrustedLeaders />
+      <Reveal>
+        <TrustedLeaders />
+      </Reveal>
 
       {/* Services Section */}
-      <Services />
+      <Reveal>
+        <Services />
+      </Reveal>
 
       {/* Case Studies Section */}
-      <CaseStudies />
+      <Reveal>
+        <CaseStudies />
+      </Reveal>
 
       {/* Testimonials Section */}
-      <Testimonials />
+      <Reveal>
+        <Testimonials />
+      </Reveal>
 
       {/* FAQ Section */}
-      <FAQ />
+      <Reveal>
+        <FAQ />
+      </Reveal>
 
       {/* Still Have Questions CTA */}
-      <section className="bg-[#000000] p-[80px] relative w-full">
-        <div className="bg-[#1c1c1c] relative rounded-3xl shrink-0 w-full">
-          <div className="flex flex-col items-center justify-center overflow-clip relative size-full">
-            <div className="flex flex-col gap-8 items-center justify-center px-8 py-12 relative w-full">
-              <div className="flex flex-col font-['Manrope',sans-serif] font-semibold gap-2 items-center justify-center leading-[0] p-0 relative shrink-0 text-center w-full">
-                <div className="text-[32px] leading-[40px] tracking-[-0.32px] text-[#ffffff] relative shrink-0 w-full">
-                  Still have questions?
+      <Reveal>
+        <section className="bg-[#000000] p-[80px] relative w-full">
+          <div className="bg-[#1c1c1c] relative rounded-3xl shrink-0 w-full">
+            <div className="flex flex-col items-center justify-center overflow-clip relative size-full">
+              <div className="flex flex-col gap-8 items-center justify-center px-8 py-12 relative w-full">
+                <div className="flex flex-col font-['Manrope',sans-serif] font-semibold gap-2 items-center justify-center leading-[0] p-0 relative shrink-0 text-center w-full">
+                  <div className="text-[32px] leading-[40px] tracking-[-0.32px] text-[#ffffff] relative shrink-0 w-full">
+                    Still have questions?
+                  </div>
+                  <div className="text-[24px] leading-[32px] tracking-[-0.24px] text-[#828282] relative shrink-0 w-full">
+                    We're here to help.
+                  </div>
                 </div>
-                <div className="text-[24px] leading-[32px] tracking-[-0.24px] text-[#828282] relative shrink-0 w-full">
-                  We're here to help.
-                </div>
+                <Button variant="primary" size="lg">
+                  Contact Us
+                </Button>
               </div>
-              <Button variant="primary" size="lg">
-                Contact Us
-              </Button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Reveal>
 
       {/* Footer Section */}
       <Footer />

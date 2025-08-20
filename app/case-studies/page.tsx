@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { DataTable } from '@/components/ui/data-table'
+import { Reveal } from '@/components/ui/Reveal'
 import { ColumnDef } from '@tanstack/react-table'
 
 type CaseRow = {
@@ -51,13 +52,15 @@ const columns: ColumnDef<CaseRow>[] = [
 export default function CaseStudiesIndexPage() {
   return (
     <main className="bg-[#000000] box-border flex flex-col items-start justify-start p-[80px] gap-12 w-full">
-      <section className="w-full max-w-5xl mx-auto">
-        <h1 className="font-['Manrope',sans-serif] font-semibold text-[48px] leading-[56px] tracking-[-0.48px] text-white">Case Studies</h1>
-        <p className="mt-4 text-[#d7d7d7] text-[18px] leading-[28px]">Discover how we transform industries with cutting-edge AI solutions.</p>
-        <div className="mt-8">
-          <DataTable columns={columns} data={rows} filterPlaceholder="Search projects, industries, services..." />
-        </div>
-      </section>
+      <Reveal>
+        <section className="w-full max-w-5xl mx-auto">
+          <h1 className="font-['Manrope',sans-serif] font-semibold text-[48px] leading-[56px] tracking-[-0.48px] text-white">Case Studies</h1>
+          <p className="mt-4 text-[#d7d7d7] text-[18px] leading-[28px]">Discover how we transform industries with cutting-edge AI solutions.</p>
+          <div className="mt-8">
+            <DataTable columns={columns} data={rows} filterPlaceholder="Search projects, industries, services..." />
+          </div>
+        </section>
+      </Reveal>
     </main>
   )
 }

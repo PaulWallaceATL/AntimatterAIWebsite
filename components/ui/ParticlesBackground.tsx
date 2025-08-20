@@ -151,8 +151,8 @@ export function ParticlesBackground({ className, particleCount = 700 }: Particle
       uniforms.uHover.value = 0.0
     }
 
-    container.addEventListener('mousemove', handleMouseMove, { passive: true })
-    container.addEventListener('mouseleave', handleMouseLeave)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('mouseleave', handleMouseLeave)
 
     // Resize
     const resizeObserver = new ResizeObserver(() => {
@@ -179,8 +179,8 @@ export function ParticlesBackground({ className, particleCount = 700 }: Particle
 
     return () => {
       cancelAnimationFrame(rafId)
-      container.removeEventListener('mousemove', handleMouseMove)
-      container.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseleave', handleMouseLeave)
       resizeObserver.disconnect()
       scene.remove(points)
       geometry.dispose()
