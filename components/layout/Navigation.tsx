@@ -13,8 +13,11 @@ export function Navigation() {
   const navItems = [
     { label: 'About', href: '/about', hasDropdown: false },
     { label: 'Services', href: '/services', hasDropdown: false },
+    { label: 'Ventures', href: '/ventures', hasDropdown: false },
+    { label: 'Events', href: '/events', hasDropdown: false },
     { label: 'Company', href: '/company/news', hasDropdown: false },
     { label: 'Case Studies', href: '/case-studies', hasDropdown: false },
+    { label: 'Careers', href: '/careers', hasDropdown: false },
     { label: 'Contact', href: '/contact', hasDropdown: false },
     { label: 'Blog', href: '/blog', hasDropdown: false },
   ]
