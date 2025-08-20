@@ -9,7 +9,7 @@ type ParticlesBackgroundProps = {
   particleCount?: number
 }
 
-export function ParticlesBackground({ className, particleCount = 2000 }: ParticlesBackgroundProps) {
+export function ParticlesBackground({ className, particleCount = 700 }: ParticlesBackgroundProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -33,9 +33,9 @@ export function ParticlesBackground({ className, particleCount = 2000 }: Particl
     const positions = new Float32Array(count * 3)
     const seeds = new Float32Array(count)
 
-    const width = 110
-    const height = 60
-    const depth = 10
+    const width = 100
+    const height = 56
+    const depth = 6
 
     for (let i = 0; i < count; i++) {
       // Place points in a soft elliptical blob with gentle Z spread
@@ -60,14 +60,14 @@ export function ParticlesBackground({ className, particleCount = 2000 }: Particl
       uRippleTime: new THREE.Uniform(0),
       uHover: new THREE.Uniform(0),
       uPixelRatio: new THREE.Uniform(Math.min(window.devicePixelRatio, 2)),
-      uBaseSize: new THREE.Uniform(2.0),
+      uBaseSize: new THREE.Uniform(1.4),
       uColor: new THREE.Uniform(new THREE.Color('#a2a3e9')),
     }
 
     const material = new THREE.ShaderMaterial({
       transparent: true,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       uniforms,
       vertexShader: `
         uniform float uTime;
@@ -81,26 +81,26 @@ export function ParticlesBackground({ className, particleCount = 2000 }: Particl
         
         void main() {
           vec3 pos = position;
-          // Gentle perpetual drift (slightly stronger)
-          float dx = sin(uTime * 0.18 + pos.y * 0.22 + aSeed) * 0.55;
-          float dy = cos(uTime * 0.20 + pos.x * 0.20 + aSeed) * 0.50;
+          // Gentle perpetual drift (more subtle and elegant)
+          float dx = sin(uTime * 0.16 + pos.y * 0.18 + aSeed) * 0.25;
+          float dy = cos(uTime * 0.14 + pos.x * 0.16 + aSeed) * 0.22;
           pos.x += dx;
           pos.y += dy;
 
-          // Ripple displacement along Z, decays with distance
+          // Ripple displacement along Z, smooth and subtle
           float d = distance(pos.xy, uRippleCenter.xy);
-          float influence = uHover * exp(-d * 0.08);
-          float wave = sin(d * 6.0 - uRippleTime * 4.0);
-          pos.z += influence * wave * 2.0;
+          float influence = uHover * smoothstep(1.0, 0.0, d * 0.06);
+          float wave = sin(d * 5.0 - uRippleTime * 3.0);
+          pos.z += influence * wave * 0.8;
 
           vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
           gl_Position = projectionMatrix * mvPosition;
 
-          float size = uBaseSize * (1.0 + 0.25 * sin(aSeed + uTime * 0.5));
+          float size = uBaseSize * (1.0 + 0.2 * sin(aSeed + uTime * 0.4));
           size *= (300.0 / -mvPosition.z);
-          gl_PointSize = size * uPixelRatio;
+          gl_PointSize = clamp(size * uPixelRatio, 0.8, 6.0);
 
-          vAlpha = 0.5 + 0.5 * influence;
+          vAlpha = 0.28 + 0.42 * influence;
         }
       `,
       fragmentShader: `
@@ -110,7 +110,7 @@ export function ParticlesBackground({ className, particleCount = 2000 }: Particl
         void main() {
           vec2 c = gl_PointCoord - vec2(0.5);
           float d = dot(c, c);
-          float alpha = smoothstep(0.25, 0.0, d);
+          float alpha = smoothstep(0.20, 0.0, d);
           gl_FragColor = vec4(uColor, alpha * vAlpha);
         }
       `,
@@ -151,8 +151,8 @@ export function ParticlesBackground({ className, particleCount = 2000 }: Particl
       uniforms.uHover.value = 0.0
     }
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    window.addEventListener('mouseleave', handleMouseLeave)
+    container.addEventListener('mousemove', handleMouseMove, { passive: true })
+    container.addEventListener('mouseleave', handleMouseLeave)
 
     // Resize
     const resizeObserver = new ResizeObserver(() => {
@@ -179,8 +179,8 @@ export function ParticlesBackground({ className, particleCount = 2000 }: Particl
 
     return () => {
       cancelAnimationFrame(rafId)
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseleave', handleMouseLeave)
+      container.removeEventListener('mousemove', handleMouseMove)
+      container.removeEventListener('mouseleave', handleMouseLeave)
       resizeObserver.disconnect()
       scene.remove(points)
       geometry.dispose()
