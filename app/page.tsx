@@ -5,6 +5,7 @@ import { Testimonials } from '@/components/sections/Testimonials'
 import { FAQ } from '@/components/sections/FAQ'
 import { Footer } from '@/components/sections/Footer'
 import { Button } from '@/components/ui/Button'
+import { ParticlesBackground } from '@/components/ui/ParticlesBackground'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -13,6 +14,8 @@ export default function HomePage() {
     <main className="bg-[#000000] box-border content-stretch flex flex-col items-start justify-start p-0 relative size-full">
       {/* Hero Section */}
       <section className="bg-[#000000] box-border content-stretch flex flex-col gap-8 items-start justify-start overflow-clip p-[120px] relative shrink-0 w-full">
+        {/* Particles Background */}
+        <ParticlesBackground className="absolute inset-0 z-0" />
         {/* Background Fade Gradient Bars */}
         <div className="absolute box-border content-stretch flex flex-row gap-8 h-[704px] items-start justify-start left-1/2 overflow-clip pb-16 pt-0 px-0 top-0 translate-x-[-50%] w-full">
           <div className="basis-0 bg-gradient-to-b from-[#ffffff00] grow h-80 min-h-px min-w-px rounded-bl-[20px] rounded-br-[20px] shrink-0 to-[#ffffff14]" />
