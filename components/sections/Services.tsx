@@ -116,6 +116,9 @@ export function Services() {
                 <div key={service.id}>
                   <div className="box-border content-stretch flex flex-col gap-8 items-start justify-start p-0 relative shrink-0 w-full">
                     <div className="box-border content-stretch flex flex-row gap-4 md:gap-8 items-center justify-center p-0 relative shrink-0 w-full">
+                      <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden">
+                        <LiquidHoverCard className="absolute inset-0" />
+                      </div>
                       <div className="basis-0 box-border content-stretch flex flex-row gap-4 md:gap-8 grow items-start justify-start min-h-px min-w-px p-0 relative shrink-0">
                         <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-start p-[12px] md:p-[16px] relative rounded-xl shrink-0">
                           <div className="absolute border-[#a2a3e9] border-[1.5px] border-solid inset-0 pointer-events-none rounded-xl" />

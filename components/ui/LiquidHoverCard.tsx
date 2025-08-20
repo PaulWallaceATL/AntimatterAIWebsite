@@ -28,6 +28,7 @@ export function LiquidHoverCard({ className }: LiquidHoverCardProps) {
       uResolution: new THREE.Uniform(new THREE.Vector2(container.clientWidth, container.clientHeight)),
       uMouse: new THREE.Uniform(new THREE.Vector2(0.5, 0.5)),
       uIntensity: new THREE.Uniform(0),
+      uOpacity: new THREE.Uniform(0.28),
     }
 
     const material = new THREE.ShaderMaterial({
@@ -48,6 +49,7 @@ export function LiquidHoverCard({ className }: LiquidHoverCardProps) {
         uniform vec2 uResolution;
         uniform vec2 uMouse;
         uniform float uIntensity;
+        uniform float uOpacity;
 
         // brand colors
         vec3 colorTop = vec3(0.08, 0.08, 0.08); // #141414
@@ -80,7 +82,7 @@ export function LiquidHoverCard({ className }: LiquidHoverCardProps) {
           float glow = exp(-d * 12.0) * 0.18 * uIntensity;
           col += accent * glow * 0.25;
 
-          gl_FragColor = vec4(col, 1.0);
+          gl_FragColor = vec4(col, uOpacity);
         }
       `,
     })

@@ -23,7 +23,7 @@ export function Navigation() {
   ]
 
   return (
-    <div className="sticky top-0 z-50 relative size-full bg-[#000000] h-20" data-name="Navbar">
+    <div className="sticky top-0 z-50 relative size-full h-20" data-name="Navbar" style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', backgroundColor: 'rgba(0,0,0,0.4)' }}>
       <div className="flex flex-row items-center relative size-full">
         <div className="box-border content-stretch flex flex-row items-center justify-between px-16 py-0 relative size-full">
           {/* Logo */}
