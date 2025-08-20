@@ -37,10 +37,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, va
   const Comp = asChild ? Slot : 'button'
   return (
     <Comp
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, className }), 'btn-glow')}
       ref={ref}
       {...props}
-    />
+    >
+      <span className="btn-shimmer">{props.children}</span>
+    </Comp>
   )
 })
 Button.displayName = 'Button'
