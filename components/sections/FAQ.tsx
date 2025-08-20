@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 interface FAQItem {
   id: string
@@ -48,18 +47,11 @@ const faqData: FAQItem[] = [
 ]
 
 export function FAQ() {
-  const [expandedFAQ, setExpandedFAQ] = useState<string | null>('services')
-
-  const toggleFAQ = (id: string) => {
-    setExpandedFAQ(expandedFAQ === id ? null : id)
-  }
-
   return (
     <div className="bg-[#000000] relative w-full">
       <div className="flex flex-col justify-center relative w-full">
         <div className="flex flex-col gap-16 items-start justify-center p-[80px] relative w-full">
           <div className="flex gap-20 items-start justify-start p-0 relative shrink-0 w-full">
-            {/* Left Column - Header */}
             <div className="basis-0 flex flex-col gap-6 grow items-start justify-center leading-[0] min-h-px min-w-px p-0 relative shrink-0 text-left">
               <div className="font-['Manrope',sans-serif] font-semibold relative shrink-0 text-[#ffffff] text-[56px] tracking-[-0.56px] w-full">
                 <p className="block leading-[56px]">FAQs</p>
@@ -71,44 +63,27 @@ export function FAQ() {
               </div>
             </div>
 
-            {/* Right Column - FAQ Items */}
             <div className="basis-0 flex flex-col gap-8 grow items-end justify-start min-h-px min-w-px p-0 relative shrink-0">
-              {faqData.map((faq, index) => (
-                <div key={faq.id}>
-                  <div
-                    className="flex gap-8 items-start justify-start p-0 relative rounded-2xl shrink-0 w-full cursor-pointer"
-                    onClick={() => toggleFAQ(faq.id)}
-                  >
-                    <div className="basis-0 flex flex-col gap-4 grow items-start justify-center leading-[0] min-h-px min-w-px p-0 relative shrink-0 text-[#ffffff] text-left">
-                      <div className="font-['Manrope',sans-serif] font-semibold relative shrink-0 text-[18px] tracking-[-0.36px] w-full">
-                        <p className="block leading-[24px]">{faq.question}</p>
-                      </div>
-                      {expandedFAQ === faq.id && (
-                        <div className="font-['Manrope',sans-serif] font-normal relative shrink-0 text-[16px] tracking-[-0.32px] w-full">
-                          <p className="block leading-[24px]">{faq.answer}</p>
-                        </div>
-                      )}
-                    </div>
-                    <div className="overflow-clip relative shrink-0 size-6">
-                      <div className={expandedFAQ === faq.id ? "absolute bottom-[46.875%] left-[12.5%] right-[12.5%] top-[46.875%]" : "absolute inset-[12.5%]"}>
-                        <Image
-                          src={expandedFAQ === faq.id ? "/assets/services/minus-icon.svg" : "/assets/services/plus-icon.svg"}
-                          alt={expandedFAQ === faq.id ? "collapse" : "expand"}
-                          fill
-                          className="block max-w-none"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  {index < faqData.length - 1 && (
-                    <div className="bg-[#545454] h-px shrink-0 w-full mt-8" />
-                  )}
-                </div>
-              ))}
+              <Accordion type="single" collapsible className="w-full">
+                {faqData.map((faq, index) => (
+                  <AccordionItem key={faq.id} value={faq.id} className="border-b border-[#1c1c1c]">
+                    <AccordionTrigger className="text-left text-white hover:no-underline py-6">
+                      <span className="font-['Manrope',sans-serif] font-semibold text-[18px] tracking-[-0.36px]">
+                        {faq.question}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-6 text-[#d7d7d7]">
+                      <p className="font-['Manrope',sans-serif] text-[16px] leading-[24px] tracking-[-0.32px]">
+                        {faq.answer}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </div>
       </div>
     </div>
   )
-} 
+}

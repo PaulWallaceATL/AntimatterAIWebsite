@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import Image from 'next/image'
 import { Logo } from '@/components/ui/Logo'
+import { Button } from '@/components/ui/Button'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,16 +30,12 @@ export function Navigation() {
 
           {/* CTAs - Right Side */}
           <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-0 relative shrink-0">
-            <div className="bg-[#1c1c1c] box-border content-stretch flex flex-row gap-10 h-10 items-center justify-center px-6 py-0 relative rounded-[10px] shrink-0 cursor-pointer hover:bg-[#2c2c2c] transition-colors">
-              <div className="font-['Manrope',sans-serif] font-semibold leading-[0] relative shrink-0 text-[#ffffff] text-[14px] text-center text-nowrap tracking-[-0.14px]">
-                <p className="block leading-[20px] whitespace-pre">Sign In</p>
-              </div>
-            </div>
-            <div className="bg-[#696aac] box-border content-stretch flex flex-row gap-10 h-10 items-center justify-center px-6 py-0 relative rounded-[10px] shrink-0 cursor-pointer hover:bg-[#7a7bb8] transition-colors">
-              <div className="font-['Manrope',sans-serif] font-semibold leading-[0] relative shrink-0 text-[#ffffff] text-[14px] text-center text-nowrap tracking-[-0.14px]">
-                <p className="block leading-[20px] whitespace-pre">Start Your Project</p>
-              </div>
-            </div>
+            <Button variant="secondary" size="md" asChild>
+              <Link href="/auth/login">Sign In</Link>
+            </Button>
+            <Button variant="primary" size="md" asChild>
+              <Link href="/book-call">Start Your Project</Link>
+            </Button>
           </div>
 
           {/* Desktop Navigation - Centered */}
@@ -46,19 +43,19 @@ export function Navigation() {
             className="absolute box-border content-stretch flex flex-row gap-10 items-center justify-start p-0 top-1/2 translate-x-[-50%] translate-y-[-50%] hidden md:flex"
             style={{ left: "calc(50% + 0.5px)" }}
           >
-            {navItems.map((item) => (
-              <div
-                key={item.label}
-                className="box-border content-stretch flex flex-row gap-1 h-10 items-center justify-start p-0 relative shrink-0"
-              >
-                <Link
-                  href={item.href}
-                  className="font-['Manrope',sans-serif] font-normal leading-[0] relative shrink-0 text-[#ffffff] text-[14px] text-center text-nowrap tracking-[-0.14px] hover:text-[#a2a3e9] transition-colors"
-                >
-                  <p className="block leading-[20px] whitespace-pre">{item.label}</p>
-                </Link>
-              </div>
-            ))}
+            <NavigationMenu>
+              <NavigationMenuList>
+                {navItems.map((item) => (
+                  <NavigationMenuItem key={item.label}>
+                    <Link href={item.href} legacyBehavior passHref>
+                      <NavigationMenuLink className="text-[14px] tracking-[-0.14px] text-white hover:text-[#a2a3e9] font-['Manrope',sans-serif]">
+                        {item.label}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,16 +88,12 @@ export function Navigation() {
               </Link>
             ))}
             <div className="pt-4 space-y-2">
-              <div className="bg-[#1c1c1c] box-border content-stretch flex flex-row gap-10 h-10 items-center justify-center px-6 py-0 relative rounded-[10px] w-full cursor-pointer hover:bg-[#2c2c2c] transition-colors">
-                <div className="font-['Manrope',sans-serif] font-semibold leading-[0] relative shrink-0 text-[#ffffff] text-[14px] text-center text-nowrap tracking-[-0.14px]">
-                  <p className="block leading-[20px] whitespace-pre">Sign In</p>
-                </div>
-              </div>
-              <div className="bg-[#696aac] box-border content-stretch flex flex-row gap-10 h-10 items-center justify-center px-6 py-0 relative rounded-[10px] w-full cursor-pointer hover:bg-[#7a7bb8] transition-colors">
-                <div className="font-['Manrope',sans-serif] font-semibold leading-[0] relative shrink-0 text-[#ffffff] text-[14px] text-center text-nowrap tracking-[-0.14px]">
-                  <p className="block leading-[20px] whitespace-pre">Start Your Project</p>
-                </div>
-              </div>
+              <Button variant="secondary" size="md" asChild className="w-full">
+                <Link href="/auth/login">Sign In</Link>
+              </Button>
+              <Button variant="primary" size="md" asChild className="w-full">
+                <Link href="/book-call">Start Your Project</Link>
+              </Button>
             </div>
           </div>
         </div>

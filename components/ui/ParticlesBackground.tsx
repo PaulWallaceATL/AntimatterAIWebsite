@@ -5,11 +5,11 @@ import * as THREE from 'three'
 
 type ParticlesBackgroundProps = {
   className?: string
-  /** Optional desired particle count; defaults to 6000 */
+  /** Optional desired particle count; defaults to 2000 */
   particleCount?: number
 }
 
-export function ParticlesBackground({ className, particleCount = 6000 }: ParticlesBackgroundProps) {
+export function ParticlesBackground({ className, particleCount = 2000 }: ParticlesBackgroundProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -18,7 +18,9 @@ export function ParticlesBackground({ className, particleCount = 6000 }: Particl
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    renderer.setSize(container.clientWidth, container.clientHeight, false)
+    renderer.setSize(container.clientWidth, container.clientHeight, true)
+    renderer.domElement.style.width = '100%'
+    renderer.domElement.style.height = '100%'
     renderer.setClearColor(0x000000, 0)
     container.appendChild(renderer.domElement)
 
@@ -31,9 +33,9 @@ export function ParticlesBackground({ className, particleCount = 6000 }: Particl
     const positions = new Float32Array(count * 3)
     const seeds = new Float32Array(count)
 
-    const width = 120
-    const height = 70
-    const depth = 8
+    const width = 110
+    const height = 60
+    const depth = 10
 
     for (let i = 0; i < count; i++) {
       // Place points in a soft elliptical blob with gentle Z spread
@@ -58,7 +60,7 @@ export function ParticlesBackground({ className, particleCount = 6000 }: Particl
       uRippleTime: new THREE.Uniform(0),
       uHover: new THREE.Uniform(0),
       uPixelRatio: new THREE.Uniform(Math.min(window.devicePixelRatio, 2)),
-      uBaseSize: new THREE.Uniform(1.6),
+      uBaseSize: new THREE.Uniform(2.0),
       uColor: new THREE.Uniform(new THREE.Color('#a2a3e9')),
     }
 
@@ -79,9 +81,9 @@ export function ParticlesBackground({ className, particleCount = 6000 }: Particl
         
         void main() {
           vec3 pos = position;
-          // Gentle perpetual drift
-          float dx = sin(uTime * 0.15 + pos.y * 0.25 + aSeed) * 0.25;
-          float dy = cos(uTime * 0.20 + pos.x * 0.20 + aSeed) * 0.25;
+          // Gentle perpetual drift (slightly stronger)
+          float dx = sin(uTime * 0.18 + pos.y * 0.22 + aSeed) * 0.55;
+          float dy = cos(uTime * 0.20 + pos.x * 0.20 + aSeed) * 0.50;
           pos.x += dx;
           pos.y += dy;
 
@@ -94,7 +96,7 @@ export function ParticlesBackground({ className, particleCount = 6000 }: Particl
           vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
           gl_Position = projectionMatrix * mvPosition;
 
-          float size = uBaseSize * (1.0 + 0.3 * sin(aSeed + uTime * 0.5));
+          float size = uBaseSize * (1.0 + 0.25 * sin(aSeed + uTime * 0.5));
           size *= (300.0 / -mvPosition.z);
           gl_PointSize = size * uPixelRatio;
 
@@ -124,10 +126,18 @@ export function ParticlesBackground({ className, particleCount = 6000 }: Particl
 
     function handleMouseMove(e: MouseEvent) {
       const rect = container!.getBoundingClientRect()
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom
+      if (!inside) {
+        uniforms.uHover.value = 0.0
+        return
+      }
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1
       const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1)
       mouseNDC.set(x, y)
-      // Intersect with plane to get world position
       raycaster.setFromCamera(mouseNDC, camera)
       const hit = new THREE.Vector3()
       raycaster.ray.intersectPlane(plane, hit)
@@ -148,7 +158,7 @@ export function ParticlesBackground({ className, particleCount = 6000 }: Particl
     const resizeObserver = new ResizeObserver(() => {
       const w = container.clientWidth
       const h = container.clientHeight
-      renderer.setSize(w, h, false)
+      renderer.setSize(w, h, true)
       camera.aspect = w / h
       camera.updateProjectionMatrix()
       uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2)
