@@ -6,7 +6,8 @@ import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/ui/Logo'
 import { Button } from '@/components/ui/Button'
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu'
-import { HoloLink } from '@/components/ui/HoloLink'
+// Swap to CSS-based holo links to avoid too many WebGL contexts
+import { HoloLinkCSS } from '@/components/ui/HoloLinkCSS'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -49,7 +50,7 @@ export function Navigation() {
           >
             {navItems.map((item) => (
               <div key={item.label} className="flex items-center">
-                <HoloLink href={item.href} label={item.label} />
+                <HoloLinkCSS href={item.href} label={item.label} />
               </div>
             ))}
           </div>
