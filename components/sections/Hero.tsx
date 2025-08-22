@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ParticlesBackground } from '@/components/ui/ParticlesBackground'
+import { NeuralNetworkBackground } from '@/components/ui/NeuralNetworkBackground'
 import { Button } from '@/components/ui/Button'
 
 export function Hero() {
@@ -16,7 +17,7 @@ export function Hero() {
     <section ref={ref} className="bg-[#000000] box-border content-stretch flex flex-col gap-8 items-start justify-start overflow-clip p-8 md:p-[120px] relative shrink-0 w-full">
       {/* Parallax Background */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
-        <ParticlesBackground className="absolute inset-0" />
+        <NeuralNetworkBackground className="absolute inset-0" />
         {/* Background Fade Gradient Bars */}
         <div className="absolute box-border content-stretch flex flex-row gap-8 h-[704px] items-start justify-start left-1/2 overflow-clip pb-16 pt-0 px-0 top-0 translate-x-[-50%] w-full">
           <div className="basis-0 bg-gradient-to-b from-[#ffffff00] grow h-80 min-h-px min-w-px rounded-bl-[20px] rounded-br-[20px] shrink-0 to-[#ffffff14]" />
