@@ -13,6 +13,7 @@ type HoloCounter3DProps = {
 export function HoloCounter3D({ value, durationMs = 1400, className, suffix }: HoloCounter3DProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [started, setStarted] = useState(false)
+  const hoverTarget = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
     const el = containerRef.current
@@ -43,42 +44,42 @@ export function HoloCounter3D({ value, durationMs = 1400, className, suffix }: H
     camera.position.set(0, 0, 9)
 
     // lights
-    scene.add(new THREE.AmbientLight(0x8080aa, 0.6))
-    const point = new THREE.PointLight(0xa2a3e9, 1.2, 50)
+    scene.add(new THREE.AmbientLight(0x8080aa, 0.45))
+    const point = new THREE.PointLight(0xa2a3e9, 0.9, 50)
     point.position.set(4, 5, 10)
     scene.add(point)
 
     // materials
     const mat = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color('#bfc0ff'),
-      emissive: new THREE.Color('#8a8bda'),
-      emissiveIntensity: 0.45,
-      metalness: 0.2,
-      roughness: 0.2,
+      color: new THREE.Color('#c9caff'),
+      emissive: new THREE.Color('#7f80d6'),
+      emissiveIntensity: 0.36,
+      metalness: 0.15,
+      roughness: 0.25,
       transparent: true,
-      opacity: 0.7,
-      transmission: 0.6,
-      thickness: 0.6,
+      opacity: 0.9,
+      transmission: 0.45,
+      thickness: 0.4,
       side: THREE.DoubleSide,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
     })
 
     // digit blueprint (seven-segment)
-    const segLen = 1.8
-    const segThick = 0.28
-    const depth = 0.25
+    const segLen = 1.9
+    const segThick = 0.22
+    const depth = 0.18
     const unit = new THREE.BoxGeometry(segLen, segThick, depth)
     const unitV = new THREE.BoxGeometry(segThick, segLen, depth)
 
     function createDigit(): THREE.Group {
       const g = new THREE.Group()
-      const a = new THREE.Mesh(unit, mat.clone()); a.position.set(0, 1.0, 0)
-      const d = new THREE.Mesh(unit, mat.clone()); d.position.set(0, -1.0, 0)
+      const a = new THREE.Mesh(unit, mat.clone()); a.position.set(0, 1.02, 0)
+      const d = new THREE.Mesh(unit, mat.clone()); d.position.set(0, -1.02, 0)
       const gseg = new THREE.Mesh(unit, mat.clone()); gseg.position.set(0, 0.0, 0)
-      const b = new THREE.Mesh(unitV, mat.clone()); b.position.set(0.9, 0.5, 0)
-      const c = new THREE.Mesh(unitV, mat.clone()); c.position.set(0.9, -0.5, 0)
-      const e = new THREE.Mesh(unitV, mat.clone()); e.position.set(-0.9, -0.5, 0)
-      const f = new THREE.Mesh(unitV, mat.clone()); f.position.set(-0.9, 0.5, 0)
+      const b = new THREE.Mesh(unitV, mat.clone()); b.position.set(0.96, 0.52, 0)
+      const c = new THREE.Mesh(unitV, mat.clone()); c.position.set(0.96, -0.52, 0)
+      const e = new THREE.Mesh(unitV, mat.clone()); e.position.set(-0.96, -0.52, 0)
+      const f = new THREE.Mesh(unitV, mat.clone()); f.position.set(-0.96, 0.52, 0)
       const arr = [a, b, c, d, e, f, gseg]
       arr.forEach(m => g.add(m))
       // store for fast toggle
@@ -121,8 +122,8 @@ export function HoloCounter3D({ value, durationMs = 1400, className, suffix }: H
     scene.add(group)
 
     // optional subtle rotation
-    group.rotation.x = -0.1
-    group.rotation.y = 0.2
+    group.rotation.x = -0.06
+    group.rotation.y = 0.18
 
     // handle resize
     const resize = () => {
@@ -134,6 +135,16 @@ export function HoloCounter3D({ value, durationMs = 1400, className, suffix }: H
     }
     const ro = new ResizeObserver(resize)
     ro.observe(container)
+
+    // pointer parallax
+    const onMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect()
+      const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2
+      const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2
+      hoverTarget.current.x = nx
+      hoverTarget.current.y = ny
+    }
+    container.addEventListener('mousemove', onMove, { passive: true })
 
     // animate counting
     let raf = 0
@@ -157,7 +168,11 @@ export function HoloCounter3D({ value, durationMs = 1400, className, suffix }: H
       const k = easeOut(t)
       currentValue = value * k
       updateDigits(currentValue)
-      group.rotation.y = 0.2 + Math.sin(ts * 0.0012) * 0.06
+      // ease group towards pointer
+      const targetY = 0.18 + hoverTarget.current.x * 0.08
+      const targetX = -0.06 + hoverTarget.current.y * 0.06
+      group.rotation.y += (targetY - group.rotation.y) * 0.08
+      group.rotation.x += (targetX - group.rotation.x) * 0.08
       renderer.render(scene, camera)
       if (t < 1 || !started) raf = requestAnimationFrame(tick)
     }
@@ -166,6 +181,7 @@ export function HoloCounter3D({ value, durationMs = 1400, className, suffix }: H
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
+      container.removeEventListener('mousemove', onMove)
       scene.remove(group)
       digits.forEach(d => (d as any)._segments?.forEach((m: THREE.Mesh) => m.geometry.dispose()))
       unit.dispose()

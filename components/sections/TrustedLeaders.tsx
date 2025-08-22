@@ -33,77 +33,32 @@ export function TrustedLeaders() {
               </p>
             </div>
           </div>
-          <div className="box-border content-stretch flex flex-row gap-14 items-center justify-center p-0 relative shrink-0 w-full">
-            <div
-              className="h-8 relative shrink-0 w-[118.065px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-              data-name="Lowe's"
-            >
-              <img alt="Lowe's" className="block max-w-none size-full" src={imgLowes} />
+          <div className="w-full">
+            <div className="hidden md:block">
+              {/* 3D carousel */}
+              <div className="w-full h-[180px]">
+                {require('react').createElement(require('../ui/LogoCarousel3D').LogoCarousel3D, {
+                  logos: [
+                    { src: imgLowes, alt: "Lowe's" },
+                    { src: imgCognizants1Logo, alt: 'Cognizant' },
+                    { src: imgTrimbleLogoLogo, alt: 'Trimble' },
+                    { src: imgE2Open, alt: 'e2open' },
+                    { src: imgToyotaLogoLogo, alt: 'Toyota' },
+                    { src: imgFrame2087327283, alt: 'Company' },
+                    { src: imgKeyspace, alt: 'Keyspace' },
+                    { src: imgInjazat, alt: 'Injazat' },
+                  ],
+                  className: 'w-full h-[180px]'
+                })}
+              </div>
             </div>
-            <div
-              className="h-8 relative shrink-0 w-[138.408px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-              data-name="cognizants-1 logo"
-            >
-              <img
-                alt="Cognizant"
-                className="block max-w-none size-full"
-                src={imgCognizants1Logo}
-              />
-            </div>
-            <div
-              className="h-10 overflow-clip relative shrink-0 w-[170.6px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-              data-name="Trimble_Logo logo"
-            >
-              <img
-                alt="Trimble"
-                className="block max-w-none size-full"
-                src={imgTrimbleLogoLogo}
-              />
-            </div>
-            <div
-              className="h-10 relative shrink-0 w-[156.293px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-              data-name="e2open"
-            >
-              <img alt="e2open" className="block max-w-none size-full" src={imgE2Open} />
-            </div>
-            <div
-              className="h-12 relative shrink-0 w-[66.442px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-              data-name="Toyota_Logo logo"
-            >
-              <img
-                alt="Toyota"
-                className="block max-w-none size-full"
-                src={imgToyotaLogoLogo}
-              />
-            </div>
-            <div
-              className="h-12 relative shrink-0 w-[49.151px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-            >
-              <img
-                alt="Company Logo"
-                className="block max-w-none size-full"
-                src={imgFrame2087327283}
-              />
-            </div>
-            <div
-              className="h-12 relative shrink-0 w-[47.987px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-              data-name="keyspace"
-            >
-              <img
-                alt="Keyspace"
-                className="block max-w-none size-full"
-                src={imgKeyspace}
-              />
-            </div>
-            <div
-              className="h-12 relative shrink-0 w-[125.633px] opacity-70 hover:opacity-100 transition-opacity duration-300"
-              data-name="injazat"
-            >
-              <img
-                alt="Injazat"
-                className="block max-w-none size-full"
-                src={imgInjazat}
-              />
+            <div className="md:hidden grid grid-cols-3 gap-6 items-center opacity-80">
+              <img alt="Lowe's" src={imgLowes} className="h-8 w-auto mx-auto" />
+              <img alt="Cognizant" src={imgCognizants1Logo} className="h-8 w-auto mx-auto" />
+              <img alt="Trimble" src={imgTrimbleLogoLogo} className="h-10 w-auto mx-auto" />
+              <img alt="e2open" src={imgE2Open} className="h-10 w-auto mx-auto" />
+              <img alt="Toyota" src={imgToyotaLogoLogo} className="h-12 w-auto mx-auto" />
+              <img alt="Keyspace" src={imgKeyspace} className="h-12 w-auto mx-auto" />
             </div>
           </div>
         </div>
