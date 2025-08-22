@@ -193,7 +193,7 @@ export function ParticlesBackground({ className, particleCount = 700 }: Particle
   }, [particleCount])
 
   return (
-    <div ref={containerRef} className={className} style={{ pointerEvents: 'none' }} />
+    <div ref={containerRef} className={className} style={{ pointerEvents: 'none', width: '100%', height: '100%' }} />
   )
 }
 

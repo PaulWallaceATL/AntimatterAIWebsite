@@ -1,7 +1,6 @@
 "use client"
 
-import { motion, useAnimation, useInView } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 
 type RevealProps = {
   children: React.ReactNode
@@ -10,22 +9,12 @@ type RevealProps = {
 }
 
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null)
-  const controls = useAnimation()
-  const inView = useInView(ref, { once: true, margin: '0px 0px -15% 0px' })
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible')
-    }
-  }, [inView, controls])
-
   return (
     <motion.div
-      ref={ref}
       className={className}
       initial="hidden"
-      animate={controls}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15, margin: '-10% 0px -10% 0px' }}
       variants={{
         hidden: { opacity: 0, y: 16 },
         visible: { opacity: 1, y: 0 },

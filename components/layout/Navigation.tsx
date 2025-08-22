@@ -25,7 +25,7 @@ export function Navigation() {
   return (
     <div className="sticky top-0 z-50 relative size-full h-20" data-name="Navbar" style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', backgroundColor: 'rgba(0,0,0,0.4)' }}>
       <div className="flex flex-row items-center relative size-full">
-        <div className="box-border content-stretch flex flex-row items-center justify-between px-16 py-0 relative size-full">
+        <div className="box-border content-stretch flex flex-row items-center justify-between px-6 md:px-16 py-0 relative size-full">
           {/* Logo */}
           <Link href="/" className="block">
             <Logo />
@@ -43,7 +43,7 @@ export function Navigation() {
 
           {/* Desktop Navigation - Centered */}
           <div 
-            className="absolute box-border content-stretch flex flex-row gap-10 items-center justify-start p-0 top-1/2 translate-x-[-50%] translate-y-[-50%] hidden md:flex"
+            className="absolute box-border content-stretch flex flex-row gap-6 lg:gap-10 items-center justify-start p-0 top-1/2 translate-x-[-50%] translate-y-[-50%] hidden md:flex"
             style={{ left: "calc(50% + 0.5px)" }}
           >
             <NavigationMenu>

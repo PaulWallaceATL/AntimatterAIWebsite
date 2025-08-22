@@ -4,7 +4,7 @@ export function CaseStudies() {
   return (
     <div className="bg-[#000000] relative w-full">
       <div className="flex flex-col justify-center relative w-full">
-        <div className="flex flex-col gap-16 items-start justify-center p-[80px] relative w-full">
+        <div className="flex flex-col gap-16 items-start justify-center p-8 md:p-20 relative w-full max-w-7xl mx-auto">
           <div className="flex flex-col gap-20 items-center justify-center p-0 relative shrink-0 w-full">
             {/* Header */}
             <div className="flex flex-col gap-6 items-start justify-start p-0 relative shrink-0 w-full">
@@ -29,9 +29,9 @@ export function CaseStudies() {
 
             {/* Case Studies Content */}
             <div className="flex flex-col gap-12 items-center justify-center p-0 relative shrink-0 w-full">
-              <div className="flex gap-8 items-center justify-start p-0 relative shrink-0 w-full">
+              <div className="flex flex-col lg:flex-row gap-8 items-center justify-start p-0 relative shrink-0 w-full">
                 {/* Feature Card */}
-                <div className="bg-[#1c1c1c] flex flex-col items-start justify-between p-[32px] relative rounded-2xl shrink-0 size-[400px]">
+                <div className="bg-[#1c1c1c] flex flex-col items-start justify-between p-6 relative rounded-2xl w-full lg:w-[380px] h-[340px]">
                   <div className="h-12 relative shrink-0 w-[60.946px]">
                     <Image
                       alt="Feature"
@@ -76,9 +76,9 @@ export function CaseStudies() {
                 </div>
 
                 {/* Video Showcase */}
-                <div className="basis-0 bg-[#000000] grow h-[520px] min-h-px min-w-px relative rounded-3xl shrink-0">
-                  <div className="flex flex-row items-end justify-center overflow-clip relative size-full">
-                    <div className="flex gap-2.5 h-[520px] items-end justify-center p-[16px] relative w-full">
+                <div className="basis-0 bg-[#000000] grow h-[420px] md:h-[520px] min-h-px min-w-px relative rounded-3xl shrink-0 w-full">
+                  <div className="flex flex-row items-end justify-center overflow-hidden relative size-full">
+                    <div className="flex gap-2.5 h-full items-end justify-center p-4 md:p-[16px] relative w-full">
                       <div
                         className="absolute bg-center bg-cover bg-no-repeat h-[1510.5px] left-0 top-[-495.25px] w-[848px]"
                         style={{ backgroundImage: `url('/assets/case-studies/feature-video-showcase.png')` }}

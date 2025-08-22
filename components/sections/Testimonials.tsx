@@ -33,11 +33,11 @@ const testimonials: Testimonial[] = [
 
 export function Testimonials() {
   return (
-    <div className="bg-[#000000] relative w-full">
+    <div className="bg-[#000000] relative w-full overflow-hidden">
       <div className="flex flex-col justify-center relative w-full">
-        <div className="flex flex-col gap-16 items-start justify-center p-[80px] relative w-full">
-          {/* Background Cards - Positioned absolutely behind the main content */}
-          <div className="absolute flex gap-6 items-center justify-center left-20 p-0 top-[-80px] w-[1280px]">
+        <div className="flex flex-col gap-16 items-start justify-center p-8 md:p-20 relative w-full">
+          {/* Background Cards - decorative, hide on small screens */}
+          <div className="absolute hidden md:flex gap-6 items-center justify-center left-1/2 -translate-x-1/2 p-0 top-[-80px] w-full max-w-7xl px-4">
             <div className="flex items-center justify-center relative shrink-0">
               <div className="rotate-180 scale-y-[-1]">
                 <div className="bg-gradient-to-r from-[#ffffff14] to-[#99999900] h-80 rounded-2xl w-[600px]" />
@@ -49,11 +49,11 @@ export function Testimonials() {
           </div>
 
           {/* Main Content */}
-          <div className="flex flex-col gap-20 items-start justify-start p-0 relative shrink-0 w-full">
+          <div className="flex flex-col gap-20 items-start justify-start p-0 relative shrink-0 w-full max-w-7xl mx-auto px-4">
             {/* Header */}
             <div className="flex flex-col gap-6 items-start justify-center leading-[0] p-0 relative shrink-0 text-center w-full">
-              <div className="font-['Manrope',sans-serif] font-semibold relative shrink-0 text-[#ffffff] text-[56px] tracking-[-0.56px] w-full">
-                <p className="block leading-[56px]">What Our Clients Say</p>
+              <div className="font-['Manrope',sans-serif] font-semibold relative shrink-0 text-[#ffffff] text-[40px] md:text-[56px] tracking-[-0.56px] w-full">
+                <p className="block leading-[44px] md:leading-[56px]">What Our Clients Say</p>
               </div>
               <div className="font-['Manrope',sans-serif] font-normal relative shrink-0 text-[#d7d7d7] text-[18px] tracking-[-0.36px] w-full">
                 <p className="block leading-[24px]">
@@ -66,7 +66,7 @@ export function Testimonials() {
             <div className="flex flex-col gap-12 items-center justify-center p-0 relative shrink-0 w-full">
               {/* Testimonials Row */}
               <div className="flex flex-col gap-6 items-start justify-start p-0 relative shrink-0 w-full">
-                <div className="flex gap-6 items-center justify-center p-0 relative shrink-0 w-full">
+                <div className="flex flex-col md:flex-row gap-6 items-stretch justify-center p-0 relative shrink-0 w-full">
                   {/* Left gradient card */}
                   <div className="flex items-center justify-center relative shrink-0">
                     <div className="rotate-180 scale-y-[-1]">
@@ -78,7 +78,7 @@ export function Testimonials() {
                   {testimonials.map((testimonial) => (
                     <div
                       key={testimonial.name}
-                      className="bg-[#1c1c1c] flex flex-col h-80 items-start justify-between p-[24px] relative rounded-2xl shrink-0 w-[600px]"
+                      className="bg-[#1c1c1c] flex flex-col min-h-60 items-start justify-between p-6 relative rounded-2xl w-full md:w-[500px]"
                     >
                       <div className="flex flex-col gap-8 items-start justify-start p-0 relative shrink-0 w-full">
                         {/* Stars */}
@@ -124,7 +124,7 @@ export function Testimonials() {
                   ))}
 
                   {/* Right gradient card */}
-                  <div className="bg-gradient-to-r from-[#ffffff14] to-[#99999900] h-80 rounded-2xl shrink-0 w-[600px]" />
+                  <div className="hidden md:block bg-gradient-to-r from-[#ffffff14] to-[#99999900] h-80 rounded-2xl shrink-0 w-[500px]" />
                 </div>
               </div>
 

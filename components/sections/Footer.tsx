@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <div className="bg-[#000000] relative w-full">
       <div className="flex flex-col items-center justify-center relative w-full">
-        <div className="flex flex-col gap-16 items-center justify-center px-[120px] py-16 relative w-full">
+        <div className="flex flex-col gap-16 items-center justify-center px-6 md:px-[120px] py-16 relative w-full max-w-7xl mx-auto">
           {/* Newsletter and Back to Top */}
           <div className="flex items-start justify-between p-0 relative shrink-0 w-full">
             <div className="flex flex-col gap-8 items-start justify-center p-0 relative shrink-0">
@@ -23,8 +23,8 @@ export function Footer() {
                   development tips, and industry news.
                 </p>
               </div>
-              <div className="relative rounded-lg shrink-0 w-[480px]">
-                <div className="flex items-center justify-between overflow-clip pl-4 pr-3 py-3 relative w-[480px] border border-[#828282] rounded-lg">
+              <div className="relative rounded-lg shrink-0 w-full md:w-[480px]">
+                <div className="flex items-center justify-between overflow-hidden pl-4 pr-3 py-3 relative w-full border border-[#828282] rounded-lg">
                   <input
                     type="email"
                     placeholder="Your Email"

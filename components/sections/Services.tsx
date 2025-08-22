@@ -115,7 +115,7 @@ export function Services() {
               return (
                 <div key={service.id}>
                   <div className="box-border content-stretch flex flex-col gap-8 items-start justify-start p-0 relative shrink-0 w-full">
-                    <div className="box-border content-stretch flex flex-row gap-4 md:gap-8 items-center justify-center p-0 relative shrink-0 w-full">
+                    <div className="box-border content-stretch flex flex-col sm:flex-row gap-4 md:gap-8 items-start sm:items-center justify-between p-0 relative shrink-0 w-full">
                       <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden">
                         <LiquidHoverCard className="absolute inset-0" />
                       </div>
@@ -131,18 +131,18 @@ export function Services() {
                             />
                           </div>
                         </div>
-                        <div className="basis-0 box-border content-stretch flex flex-col gap-2 md:gap-3 grow items-start justify-center leading-[0] min-h-px min-w-px p-0 relative shrink-0 text-left tracking-[-0.32px]">
+                        <div className="basis-0 box-border content-stretch flex flex-col gap-2 md:gap-3 grow items-start justify-center leading-[0] min-h-px min-w-px p-0 relative shrink-0 text-left tracking-[-0.32px] w-full">
                           <div className="font-['Manrope',sans-serif] font-semibold relative shrink-0 text-[#ffffff] text-[24px] md:text-[32px]">
                             <p className="block leading-[32px] md:leading-[40px] whitespace-pre">{service.title}</p>
                           </div>
-                          <div className="font-['Manrope',sans-serif] font-normal min-w-full relative shrink-0 text-[#d7d7d7] text-[16px]" style={{ width: "min-content" }}>
+                          <div className="font-['Manrope',sans-serif] font-normal relative shrink-0 text-[#d7d7d7] text-[16px] w-full">
                             <p className="block leading-[24px]">{service.description}</p>
                           </div>
                         </div>
                       </div>
                       <button
                         onClick={() => toggleService(service.id)}
-                        className="flex items-center justify-center w-8 h-8 cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-none"
+                        className="flex items-center justify-center w-8 h-8 cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-none self-end sm:self-auto"
                       >
                         <Image
                           alt={isExpanded ? 'collapse' : 'expand'}
@@ -157,10 +157,10 @@ export function Services() {
                     {isExpanded && (
                       <div className="relative shrink-0 w-full">
                         <div className="relative size-full">
-                          <div className="box-border content-stretch flex flex-row gap-16 items-start justify-start pl-24 pr-0 py-0 relative w-full">
+                          <div className="box-border content-stretch flex flex-col lg:flex-row gap-8 lg:gap-16 items-start justify-start sm:pl-12 lg:pl-24 pr-0 py-0 relative w-full">
                             <div className="basis-0 box-border content-stretch flex flex-col gap-8 grow items-start justify-start min-h-px min-w-px p-0 relative shrink-0">
                               <div className="box-border content-stretch flex flex-col gap-4 items-start justify-center p-0 relative shrink-0 w-full">
-                                <div className="font-['Manrope',sans-serif] font-normal leading-[0] relative shrink-0 text-[#828282] text-[16px] text-left text-nowrap tracking-[-0.32px]">
+                                <div className="font-['Manrope',sans-serif] font-normal leading-[0] relative shrink-0 text-[#828282] text-[16px] text-left tracking-[-0.32px]">
                                   <p className="block leading-[24px] whitespace-pre">Case Study</p>
                                 </div>
                                 <div className="box-border content-stretch flex flex-row gap-6 items-start justify-start p-0 relative shrink-0 w-full">
@@ -227,7 +227,7 @@ export function Services() {
                             
                             <div className="basis-0 box-border content-stretch flex flex-col gap-8 md:gap-12 grow items-start justify-start min-h-px min-w-px p-0 relative shrink-0">
                               <div className="box-border content-stretch flex flex-col gap-2 items-start justify-center p-0 relative shrink-0 w-full">
-                                <div className="font-['Manrope',sans-serif] font-normal leading-[0] relative shrink-0 text-[#828282] text-[16px] text-left text-nowrap tracking-[-0.32px]">
+                                <div className="font-['Manrope',sans-serif] font-normal leading-[0] relative shrink-0 text-[#828282] text-[16px] text-left tracking-[-0.32px]">
                                   <p className="block leading-[24px] whitespace-pre">Services</p>
                                 </div>
                                 <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative shrink-0 w-full">
@@ -245,7 +245,7 @@ export function Services() {
                               </div>
                               
                               <div className="box-border content-stretch flex flex-col gap-2 items-start justify-center p-0 relative shrink-0 w-full">
-                                <div className="font-['Manrope',sans-serif] font-normal leading-[0] relative shrink-0 text-[#828282] text-[16px] text-left text-nowrap tracking-[-0.32px]">
+                                <div className="font-['Manrope',sans-serif] font-normal leading-[0] relative shrink-0 text-[#828282] text-[16px] text-left tracking-[-0.32px]">
                                   <p className="block leading-[24px] whitespace-pre">Technologies</p>
                                 </div>
                                 <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative shrink-0 w-full">

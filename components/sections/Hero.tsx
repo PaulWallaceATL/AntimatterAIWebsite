@@ -33,7 +33,7 @@ export function Hero() {
           <div className="basis-0 bg-gradient-to-b from-[#ffffff00] grow h-80 min-h-px min-w-px rounded-bl-[20px] rounded-br-[20px] shrink-0 to-[#ffffff14]" />
         </div>
         {/* Background Logo */}
-        <div className="absolute h-[704px] top-0 translate-x-[-50%] w-[713.026px] left-1/2 opacity-5">
+        <div className="absolute h-[540px] md:h-[704px] top-0 translate-x-[-50%] w-[520px] md:w-[713.026px] left-1/2 opacity-5">
           <Image src="/assets/logo.svg" alt="Antimatter AI" fill className="object-contain" />
         </div>
       </motion.div>
@@ -44,11 +44,11 @@ export function Hero() {
           <div className="box-border content-stretch flex flex-col gap-16 md:gap-24 items-center justify-center px-4 md:px-[120px] py-0 relative w-full">
             <div className="box-border content-stretch flex flex-col gap-8 md:gap-12 items-center justify-start p-0 relative shrink-0 w-full">
               <div className="box-border content-stretch flex flex-col gap-4 md:gap-6 items-center justify-center leading-[0] p-0 relative shrink-0 text-center w-full">
-                <h1 className="font-['Manrope',sans-serif] font-semibold text-[40px] md:text-[64px] leading-[48px] md:leading-[80px] tracking-[-0.64px] text-[#ffffff] relative shrink-0 w-full">
+                <h1 className="font-['Manrope',sans-serif] font-semibold text-[36px] sm:text-[44px] md:text-[64px] leading-[44px] sm:leading-[54px] md:leading-[80px] tracking-[-0.64px] text-[#ffffff] relative shrink-0 w-full">
                   Building Digital Solutions<br />
                   that <span className="text-[#a2a3e9]">Matter</span>
                 </h1>
-                <p className="font-['Manrope',sans-serif] font-normal text-[16px] md:text-[18px] leading-[24px] tracking-[-0.36px] text-[#f4f4f4] relative shrink-0 w-full max-w-3xl mx-auto">
+                <p className="font-['Manrope',sans-serif] font-normal text-[15px] sm:text-[16px] md:text-[18px] leading-[24px] tracking-[-0.36px] text-[#f4f4f4] relative shrink-0 w-full max-w-3xl mx-auto">
                   Transforming ideas into digital reality with AI, Web3, and Cutting-Edge Technology.
                 </p>
               </div>

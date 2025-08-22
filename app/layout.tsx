@@ -30,6 +30,13 @@ export default function RootLayout({
       <body className="antialiased bg-[#000000]">
         <Navigation />
         {children}
+        <script dangerouslySetInnerHTML={{ __html: `
+          if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/sw.js').catch(function(){})
+            })
+          }
+        ` }} />
       </body>
     </html>
   )
