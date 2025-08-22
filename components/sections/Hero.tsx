@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { ParticlesBackground } from '@/components/ui/ParticlesBackground'
 import { NeuralNetworkBackground } from '@/components/ui/NeuralNetworkBackground'
 import { TextMorph } from '@/components/ui/TextMorph'
+import { HoloCounter3D } from '@/components/ui/HoloCounter3D'
 import { Button } from '@/components/ui/Button'
 
 export function Hero() {
@@ -66,17 +67,17 @@ export function Hero() {
             {/* Metrics */}
             <div className="box-border content-stretch flex flex-col md:flex-row gap-6 md:gap-8 items-stretch md:items-start justify-start p-0 relative shrink-0 w-full">
               <div className="basis-0 box-border content-stretch flex flex-col gap-2 grow items-center justify-center leading-[0] min-h-px min-w-px p-0 relative shrink-0 text-center">
-                <div className="font-['Manrope',sans-serif] font-semibold text-[40px] leading-[40px] tracking-[-0.4px] text-[#c7c8f2] relative shrink-0 w-full">50+</div>
+                <HoloCounter3D value={50} className="mx-auto" suffix="+" />
                 <div className="font-['Manrope',sans-serif] font-normal text-[16px] leading-[24px] tracking-[-0.32px] text-[#d7d7d7] relative shrink-0 w-full">Projects Delivered</div>
               </div>
               <div className="bg-[#1c1c1c] self-stretch shrink-0 w-full h-px md:w-px md:h-auto" />
               <div className="basis-0 box-border content-stretch flex flex-col gap-2 grow items-center justify-center leading-[0] min-h-px min-w-px p-0 relative shrink-0 text-center">
-                <div className="font-['Manrope',sans-serif] font-semibold text-[40px] leading-[40px] tracking-[-0.4px] text-[#c7c8f2] relative shrink-0 w-full">100%</div>
+                <HoloCounter3D value={100} className="mx-auto" suffix="%" />
                 <div className="font-['Manrope',sans-serif] font-normal text-[16px] leading-[24px] tracking-[-0.32px] text-[#d7d7d7] relative shrink-0 w-full">Client Satisfaction</div>
               </div>
               <div className="bg-[#1c1c1c] self-stretch shrink-0 w-full h-px md:w-px md:h-auto" />
               <div className="basis-0 box-border content-stretch flex flex-col gap-2 grow items-center justify-center leading-[0] min-h-px min-w-px p-0 relative shrink-0 text-center">
-                <div className="font-['Manrope',sans-serif] font-semibold text-[40px] leading-[40px] tracking-[-0.4px] text-[#c7c8f2] relative shrink-0 w-full">24/7</div>
+                <HoloCounter3D value={24} className="mx-auto" suffix="/7" />
                 <div className="font-['Manrope',sans-serif] font-normal text-[16px] leading-[24px] tracking-[-0.32px] text-[#d7d7d7] relative shrink-0 w-full">Support Available</div>
               </div>
             </div>
