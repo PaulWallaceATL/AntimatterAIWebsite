@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/ui/Logo'
 import { Button } from '@/components/ui/Button'
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu'
+import { HoloLink } from '@/components/ui/HoloLink'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -43,22 +44,14 @@ export function Navigation() {
 
           {/* Desktop Navigation - Centered */}
           <div 
-            className="absolute box-border content-stretch flex flex-row gap-6 lg:gap-10 items-center justify-start p-0 top-1/2 translate-x-[-50%] translate-y-[-50%] hidden md:flex"
+            className="absolute box-border content-stretch flex flex-row gap-4 lg:gap-6 items-center justify-start p-0 top-1/2 translate-x-[-50%] translate-y-[-50%] hidden md:flex"
             style={{ left: "calc(50% + 0.5px)" }}
           >
-            <NavigationMenu>
-              <NavigationMenuList>
-                {navItems.map((item) => (
-                  <NavigationMenuItem key={item.label}>
-                    <Link href={item.href} legacyBehavior passHref>
-                      <NavigationMenuLink className="text-[14px] tracking-[-0.14px] text-white hover:text-[#a2a3e9] font-['Manrope',sans-serif]">
-                        {item.label}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
+            {navItems.map((item) => (
+              <div key={item.label} className="flex items-center">
+                <HoloLink href={item.href} label={item.label} />
+              </div>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
