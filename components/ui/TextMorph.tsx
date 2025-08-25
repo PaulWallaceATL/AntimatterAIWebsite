@@ -14,7 +14,7 @@ export function TextMorph({ text, className }: TextMorphProps) {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')!
+    const ctx = canvas.getContext('2d', { willReadFrequently: true } as any) as CanvasRenderingContext2D
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
     const words = text.split(/\s+/)
@@ -48,14 +48,17 @@ export function TextMorph({ text, className }: TextMorphProps) {
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.fillText(word, w / 2, h / 2)
-      const img = ctx.getImageData(0, 0, w, h)
+      const cw = canvas.width
+      const ch = canvas.height
+      const img = ctx.getImageData(0, 0, cw, ch)
       // sample points
-      const step = 6
-      for (let y = 0; y < h; y += step) {
-        for (let x = 0; x < w; x += step) {
-          const idx = (y * img.width + x) * 4 + 3
+      const stepCss = 6
+      const stepPx = Math.max(4, Math.round(stepCss * dpr))
+      for (let y = 0; y < ch; y += stepPx) {
+        for (let x = 0; x < cw; x += stepPx) {
+          const idx = (y * cw + x) * 4 + 3
           if (img.data[idx] > 128) {
-            targetPoints.push({ x, y })
+            targetPoints.push({ x: x / dpr, y: y / dpr })
           }
         }
       }
