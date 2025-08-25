@@ -259,15 +259,15 @@ export function NeuralNetworkBackground({
           const dy = hoverPoint.y - nodePositions[i * 3 + 1]
           const dz = hoverPoint.z - nodePositions[i * 3 + 2]
           const d = Math.sqrt(dx * dx + dy * dy + dz * dz)
-          const hoverInfluence = Math.max(0, 1.0 - d * 0.06)
-          intensity += hoverInfluence * 0.9
+          const hoverInfluence = Math.max(0, 1.0 - d * 0.04)
+          intensity += hoverInfluence * 0.6
         }
 
         // pulse rings
         for (let p = 0; p < activePulses.length; p++) {
           const origin = activePulses[p].origin
           const dt = Math.max(0, t - activePulses[p].start)
-          const speed = 16.0
+          const speed = 10.0
           const wavelength = 6.0
           const ox = nodePositions[origin * 3 + 0]
           const oy = nodePositions[origin * 3 + 1]
@@ -277,8 +277,8 @@ export function NeuralNetworkBackground({
           const dz = nodePositions[i * 3 + 2] - oz
           const d = Math.sqrt(dx * dx + dy * dy + dz * dz)
           const phase = d * (Math.PI * 2 / wavelength) - dt * (speed * (Math.PI * 2 / wavelength))
-          const ring = Math.max(0.0, Math.cos(phase)) * Math.exp(-dt * 0.8) * Math.exp(-d * 0.04)
-          intensity += ring * 0.9
+          const ring = Math.max(0.0, Math.cos(phase)) * Math.exp(-dt * 0.7) * Math.exp(-d * 0.035)
+          intensity += ring * 0.6
         }
 
         nodeIntensities[i] = intensity

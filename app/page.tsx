@@ -6,7 +6,6 @@ import { FAQ } from '@/components/sections/FAQ'
 import { Footer } from '@/components/sections/Footer'
 import { Button } from '@/components/ui/Button'
 import { ParticlesBackground } from '@/components/ui/ParticlesBackground'
-import { AnimatedGradient } from '@/components/ui/AnimatedGradient'
 import { Hero } from '@/components/sections/Hero'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -15,7 +14,7 @@ import { Reveal } from '@/components/ui/Reveal'
 export default function HomePage() {
   return (
     <main className="bg-[#000000] box-border content-stretch flex flex-col items-start justify-start p-0 relative size-full">
-      <AnimatedGradient className="absolute inset-0 -z-10 opacity-70" />
+      {/* background handled by hero */}
       {/* Hero Section with Parallax */}
       <Hero />
 
