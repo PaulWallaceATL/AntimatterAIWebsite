@@ -18,25 +18,29 @@ export function CountUp({ to, durationMs = 1200, suffix = '', className }: Count
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const io = new IntersectionObserver((entries) => {
-      if (!started.current && entries.some(e => e.isIntersecting)) {
-        started.current = true
-        if (prefersReduced) {
-          setVal(to)
-          return
-        }
-        const start = performance.now()
-        const animate = () => {
-          const t = Math.min(1, (performance.now() - start) / durationMs)
-          const eased = 1 - Math.pow(1 - t, 3)
-          setVal(Math.round(to * eased))
-          if (t < 1) requestAnimationFrame(animate)
-        }
-        requestAnimationFrame(animate)
+    let raf = 0
+    let fallbackTimer: any
+
+    const startAnim = () => {
+      if (started.current) return
+      started.current = true
+      if (prefersReduced) { setVal(to); return }
+      const start = performance.now()
+      const step = () => {
+        const t = Math.min(1, (performance.now() - start) / durationMs)
+        const eased = 1 - Math.pow(1 - t, 3)
+        setVal(Math.round(to * eased))
+        if (t < 1) raf = requestAnimationFrame(step)
       }
-    }, { threshold: 0.3 })
+      raf = requestAnimationFrame(step)
+    }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) startAnim()
+    }, { threshold: 0.2, rootMargin: "-10% 0% -10% 0%" })
     io.observe(el)
-    return () => io.disconnect()
+    // Fallback: if observer never fires (e.g., overlay stacking), start after 1s
+    fallbackTimer = setTimeout(startAnim, 1000)
+    return () => { io.disconnect(); cancelAnimationFrame(raf); clearTimeout(fallbackTimer) }
   }, [to, durationMs, prefersReduced])
 
   return (
