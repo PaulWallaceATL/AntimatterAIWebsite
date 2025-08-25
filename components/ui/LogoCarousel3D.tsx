@@ -32,6 +32,7 @@ export function LogoCarousel3D({ className, logos }: LogoCarousel3DProps) {
     scene.add(light)
 
     const loader = new THREE.TextureLoader()
+    loader.setCrossOrigin('anonymous')
     const radius = 8
     const plane = new THREE.PlaneGeometry(4, 2)
     const meshes: THREE.Mesh[] = []

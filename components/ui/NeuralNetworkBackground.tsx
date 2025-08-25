@@ -26,7 +26,7 @@ export function NeuralNetworkBackground({
     const container = containerRef.current
     if (!container) return
 
-    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' })
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance', preserveDrawingBuffer: false })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setSize(container.clientWidth, container.clientHeight, true)
     renderer.domElement.style.width = '100%'
@@ -224,8 +224,8 @@ export function NeuralNetworkBackground({
       hoverPoint = null
     }
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    window.addEventListener('mouseleave', handleMouseLeave)
+    container.addEventListener('mousemove', handleMouseMove, { passive: true })
+    container.addEventListener('mouseleave', handleMouseLeave)
 
     // Resize
     const resizeObserver = new ResizeObserver(() => {
@@ -308,8 +308,8 @@ export function NeuralNetworkBackground({
 
     return () => {
       cancelAnimationFrame(raf)
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseleave', handleMouseLeave)
+      container.removeEventListener('mousemove', handleMouseMove)
+      container.removeEventListener('mouseleave', handleMouseLeave)
       resizeObserver.disconnect()
       scene.remove(nodePoints)
       scene.remove(edgeSegments)
